@@ -114,7 +114,8 @@ public class PedidoDatabaseRepositoryImpl extends DatabaseDataRepository impleme
         List<ComboPedido> produtos = new ArrayList<>();
         Cliente cliente = savedEntity.getCliente() != null ? new Cliente(savedEntity.getCliente().getCpf(),
                                                                         savedEntity.getCliente().getNome(),
-                                                                        savedEntity.getCliente().getEmail())
+                                                                        savedEntity.getCliente().getEmail(),
+                                                                        null)
                                                             : null;
         for (var entrySet : mapaCombos.entrySet()){
             final Integer comboNum = entrySet.getKey();

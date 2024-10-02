@@ -36,7 +36,7 @@ public class ClienteDatabaseDataRepositoryImpl extends DatabaseDataRepository im
         getEntityManager().persist(entity);
         getEntityManager().flush();
         getEntityManager().clear();
-        return new Cliente(entity.getCpf(), entity.getNome(), entity.getEmail());
+        return new Cliente(entity.getCpf(), entity.getNome(), entity.getEmail(), null);
     }
 
 }

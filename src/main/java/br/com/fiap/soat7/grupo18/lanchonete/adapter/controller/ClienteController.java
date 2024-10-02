@@ -2,6 +2,7 @@ package br.com.fiap.soat7.grupo18.lanchonete.adapter.controller;
 
 import br.com.fiap.soat7.grupo18.lanchonete.adapter.gateway.ClienteGateway;
 import br.com.fiap.soat7.grupo18.lanchonete.adapter.presenter.ClientePresenter;
+import br.com.fiap.soat7.grupo18.lanchonete.config.AmazonCognitoConfig;
 import br.com.fiap.soat7.grupo18.lanchonete.core.repository.ClienteDataRepository;
 import br.com.fiap.soat7.grupo18.lanchonete.core.usecase.ClienteUseCase;
 import br.com.fiap.soat7.grupo18.lanchonete.external.handler.dto.ClienteHandlerRequestDto;
@@ -13,9 +14,9 @@ public class ClienteController {
     private final ClienteUseCase useCase;
 
 
-    public ClienteController(ClienteDataRepository clienteRepository) {
+    public ClienteController(ClienteDataRepository clienteRepository, AmazonCognitoConfig cognitoConfig) {
         this.clienteRepository = clienteRepository;
-        useCase = new ClienteUseCase(new ClienteGateway(this.clienteRepository));
+        useCase = new ClienteUseCase(new ClienteGateway(this.clienteRepository), cognitoConfig);
     }
 
     public ClienteHandlerResponseDto findByCpfCliente(String cpf){
