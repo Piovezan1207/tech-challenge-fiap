@@ -15,16 +15,28 @@ public class Cliente {
 
     private final String email;
 
+    private final String senha;
+
+    
+
+    public Cliente(String cpf, String nome, String email) {
+        this.cpf = cpf;
+        this.nome = nome;
+        this.email = email;
+        this.senha = null;
+    }
+
     /**
      * 
      * @param cpf
      * @param nome
      * @param email
      */
-    public Cliente(String cpf, String nome, String email) {
+    public Cliente(String cpf, String nome, String email, String senha) {
         this.cpf = cpf;
         this.nome = nome;
         this.email = email;
+        this.senha = senha;
 
         if (Optional.ofNullable(cpf).orElse("").isBlank() || cpf.length() != LENGTH_CPF || !cpf.matches(_11_DIGITS_REGEX)){
             throw new DomainEntityException("CPF não informado ou inválido");
@@ -50,6 +62,10 @@ public class Cliente {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getSenha(){
+        return senha;
     }
 
     

@@ -85,6 +85,14 @@
 			<version>3.5.2</version>
 		</dependency>
 
+		<!--dependencias aws-->
+		<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-cognitoidp -->
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-cognitoidp</artifactId>
+			<version>1.12.300</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

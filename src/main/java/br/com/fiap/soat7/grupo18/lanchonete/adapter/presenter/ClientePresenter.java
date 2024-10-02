@@ -14,7 +14,7 @@ public class ClientePresenter {
      */
     public static ClienteHandlerResponseDto maptoDto(Cliente cliente){
         return Optional.ofNullable(cliente)
-                    .map( c-> new ClienteHandlerResponseDto(c.getCpf(), c.getNome(), c.getEmail()))
+                    .map( c-> new ClienteHandlerResponseDto(c.getCpf(), c.getNome(), c.getEmail(), null))
                     .orElse(null);
     }
 

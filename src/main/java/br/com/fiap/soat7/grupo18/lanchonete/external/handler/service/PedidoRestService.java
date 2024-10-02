@@ -2,6 +2,7 @@ package br.com.fiap.soat7.grupo18.lanchonete.external.handler.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.fiap.soat7.grupo18.lanchonete.adapter.controller.PedidoController;
 import br.com.fiap.soat7.grupo18.lanchonete.adapter.gateway.ClienteGateway;
 import br.com.fiap.soat7.grupo18.lanchonete.adapter.gateway.ProdutoGateway;
+import br.com.fiap.soat7.grupo18.lanchonete.config.AmazonCognitoConfig;
 import br.com.fiap.soat7.grupo18.lanchonete.core.repository.ClienteDataRepository;
 import br.com.fiap.soat7.grupo18.lanchonete.core.repository.PedidoDataRepository;
 import br.com.fiap.soat7.grupo18.lanchonete.core.repository.ProdutoDataRepository;
@@ -35,8 +37,9 @@ public class PedidoRestService {
     public PedidoRestService(@Qualifier("pedidoDatabaseRepository") PedidoDataRepository pedidoDataRepository,
                                 @Qualifier("clienteDatabaseRepository") ClienteDataRepository clienteRepository,
                                 @Qualifier("produtoDatabaseRepository") ProdutoDataRepository produtoRepository,
-                                AbstractPagamentoGateway pagamentoGateway) {
-        this.clienteUseCase = new ClienteUseCase(new ClienteGateway(clienteRepository));
+                                AbstractPagamentoGateway pagamentoGateway,
+                                @Autowired AmazonCognitoConfig cognitoConfig) {
+        this.clienteUseCase = new ClienteUseCase(new ClienteGateway(clienteRepository), cognitoConfig);
         this.produtoUseCase = new ProdutoUseCase(new ProdutoGateway(produtoRepository));
         this.pedidoController = new PedidoController(pedidoDataRepository);
         this.pagamentoGateway = pagamentoGateway;
